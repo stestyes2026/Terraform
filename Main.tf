@@ -1,9 +1,3 @@
-provider "aws"{
-   region = "ap-south-1"
-   access_key = var.access_key
-   secret_key = var.secret
-   }
-
 module "lambda" {
   source = "./Modules/lambda"
 }
@@ -38,8 +32,4 @@ resource "aws_lambda_permission" "permission" {
   function_name = aws_lambda_function.lambda.function_name
   principal = "events.amazonaws.com"
   source_arn = aws_cloudwatch_event_rule.rule.arn
-}
-
-output "lambda" {
-  value = "Lambda ARN ${aws_lambda_function.lambda.arn}"
 }
