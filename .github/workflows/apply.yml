@@ -13,7 +13,7 @@ jobs:
       - name: fetch aws
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::001957572041:role/github
+          role-to-assume: arn:aws:iam::001957572041:role/Github
           aws-region: ap-south-1
       - name: fetching the script
         uses: actions/checkout@v3
