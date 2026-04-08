@@ -21,9 +21,9 @@ resource "aws_lambda_function" "lambda" {
 
 resource "aws_cloudwatch_event_rule" "rule" {
   name = "every-1-day"
-  schedule_expression = "cron(30 12 * * ? * )"
+  description = "run"
+  schedule_expression = "rate(1 day)"
   state = "DISABLED"
-
 }
 
 resource "aws_cloudwatch_event_target" "target" {
