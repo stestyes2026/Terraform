@@ -1,0 +1,37 @@
+name: apply
+on: 
+  push:
+  workflow_dispatch:
+jobs:
+  apply:
+    env:
+      TF_VAR_access_key: ${{ secrets.ACCESS }}
+      TF_VAR_secret: ${{ secrets.SECRET }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: fetching the script
+        uses: actions/checkout@v3
+      - name: terraform installation
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "latest"
+      - name: terraform format
+        run: terraform fmt
+      - name: terraform init
+        run: terraform init
+      - name: terraform plan
+        run: terraform plan
+      - name: terraform apply
+        run: terraform apply -auto-approve
+      - name: sleep
+        run: sleep 2m
+      - name: destroy
+        run: terraform destroy -auto-approve
+      
+        
+        
+
+      
+      
+        
+  
