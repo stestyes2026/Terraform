@@ -20,7 +20,7 @@ resource "aws_lambda_function" "lambda" {
 }
 
 resource "aws_cloudwatch_event_rule" "rule" {
-  name = "every 1 day"
+  name = "every-1-day"
   schedule_expression = "rate(1 Day)"
   state = "DISABLED"
 
