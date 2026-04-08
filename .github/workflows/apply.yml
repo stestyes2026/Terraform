@@ -2,13 +2,19 @@ name: apply
 on: 
   push:
   workflow_dispatch:
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   apply:
-    env:
-      TF_VAR_access_key: ${{ secrets.ACCESS }}
-      TF_VAR_secret: ${{ secrets.SECRET }}
     runs-on: ubuntu-latest
     steps:
+      - name: fetch aws
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::001957572041:role/github
+          aws-region: ap-south-1
       - name: fetching the script
         uses: actions/checkout@v3
       - name: terraform installation
