@@ -27,7 +27,7 @@ resource "aws_cloudwatch_event_rule" "rule" {
 }
 
 resource "aws_cloudwatch_event_target" "target" {
-  rule = aws_cloudwatch_event_rule.rule
+  rule = aws_cloudwatch_event_rule.rule.name
   target_id = "Run_lambda"
   arn = aws_lambda_function.lambda.arn
 }
