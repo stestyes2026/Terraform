@@ -18,3 +18,7 @@ resource "aws_iam_policy_attachment" "name" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
+
+output "role" {
+  value = aws_iam_role.lambdarole.arn
+}
