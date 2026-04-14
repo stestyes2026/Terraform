@@ -71,6 +71,11 @@ jobs:
     needs: Trivy
     runs-on: ubuntu-latest
     steps:
+      - name: fetch aws
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::001957572041:role/Github
+          aws-region: ap-south-1
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
       - name: cache
@@ -87,6 +92,11 @@ jobs:
     needs: Plan
     runs-on: ubuntu-latest
     steps:
+      - name: fetch aws
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::001957572041:role/Github
+          aws-region: ap-south-1
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
       - name: cache
