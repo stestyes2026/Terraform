@@ -1,0 +1,30 @@
+name: Lambda_deletion
+on: workflow_dispatch
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  Destroy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch the script
+        uses: actions/checkout@v4
+      - name: fetch aws
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::001957572041:role/Github
+          aws-region: ap-south-1
+      - name: cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .terraform
+            .terraform.lock.hcl
+          key: terraform-${{ runner.os }}-${{ hashFiles('**/*.tf') }}
+      - name: terraform destroy
+        run: terraform destroy -auto-approve
+      
+      
+        
+  
